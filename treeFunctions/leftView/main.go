@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go-dsa/treeformation"
 	"fmt"
+	"go-dsa/treeformation"
 )
 
 func leftView(headNode *treeformation.Node) {

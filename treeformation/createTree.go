@@ -50,13 +50,12 @@ func CreateTree(datalist []int64) *Node {
 	return head
 }
 
-
 func CreateNodeNextRight(nodeData int64) *NodeWihNextRight {
 	return &NodeWihNextRight{
-		Data:  nodeData,
-		Left:  nil,
-		Right: nil,
-		NextRight:nil,
+		Data:      nodeData,
+		Left:      nil,
+		Right:     nil,
+		NextRight: nil,
 	}
 }
 
@@ -101,4 +100,3 @@ func CreateTreeNextRight(datalist []int64) *NodeWihNextRight {
 	}
 	return head
 }
-

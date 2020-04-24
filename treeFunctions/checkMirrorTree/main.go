@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go-dsa/treeformation"
 	"fmt"
+	"go-dsa/treeformation"
 )
 
 // One approach would be to get nodes in pre-order and post-order and compare each of them.
