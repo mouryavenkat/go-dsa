@@ -6,7 +6,6 @@ type node struct {
 	value int
 	right *node
 }
-
 type LRUCache struct {
 	head        *node
 	last        *node
@@ -19,19 +18,17 @@ func InitialiseCacheObject(capacity int) LRUCache {
 	return LRUCache{
 		head:        nil,
 		last:        nil,
-		keyNodeMap:  make(map[int]*node,capacity),
+		keyNodeMap:  make(map[int]*node, capacity),
 		filledCount: 0,
 		capacity:    capacity,
 	}
 }
-
 func createNewNode(key int, value int) *node {
 	return &node{
 		key:   key,
 		value: value,
 	}
 }
-
 func (cacheObject *LRUCache) moveNodeToLast(nodeAddress *node) {
 	if cacheObject.last == nodeAddress {
 		return
@@ -63,7 +60,6 @@ func (cacheObject *LRUCache) Get(key int) int {
 }
 
 func (cacheObject *LRUCache) Put(key int, value int) {
-
 	nodeAddress, nodeExists := cacheObject.keyNodeMap[key]
 	if nodeExists {
 		cacheObject.moveNodeToLast(nodeAddress)
@@ -97,14 +93,13 @@ func (cacheObject *LRUCache) Put(key int, value int) {
 	cacheObject.filledCount = cacheObject.filledCount + 1
 }
 
-
 // Usage ----
 
 func main() {
 	cacheObject := InitialiseCacheObject(10)
-	cacheObject.Put(1,10)
+	cacheObject.Put(1, 10)
 	cacheObject.Put(2, 30)
 	cacheObject.Get(3)
 	cacheObject.Get(1)
-	cacheObject.Put(5,50)
+	cacheObject.Put(5, 50)
 }
