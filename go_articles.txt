@@ -1,0 +1,17 @@
+
+
+
+An article by Vincent Blanchon on Golang Compiler Inlining.
+https://medium.com/a-journey-with-go/go-inlining-strategy-limitation-6b6d7fc3b1be
+
+
+
+Go Build Flags
+
+gcflags="-d pctab=pctofile" -> (This determines all the Low level registers that program required. It also shows the inlined functions and their reference)
+
+gcflags="-m" -> This specified which functions are inlined and which variables escaped to the heap
+
+gcflags="-m -m" -> This prints more verbose output detailing the information of `gcflags="-m"`
+
+gcflags="-l" -> This flag makes sure that the build doesn't inline any function

@@ -23,6 +23,7 @@ func recursive(root *treeformation.Node, path []int64) (finalCount int) {
 	if root == nil {
 		return
 	}
+
 	path = append(path, root.Data)
 	finalCount += recursive(root.Left, path)
 	finalCount += recursive(root.Right, path)
