@@ -4,6 +4,8 @@
 An article by Vincent Blanchon on Golang Compiler Inlining.
 https://medium.com/a-journey-with-go/go-inlining-strategy-limitation-6b6d7fc3b1be
 
+An article by Patrick Gopher on Golang Escape Analysis.
+https://medium.com/swlh/go-escape-analysis-what-why-and-how-8cf6c8250a62
 
 
 Go Build Flags
