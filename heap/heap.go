@@ -6,27 +6,27 @@ type Node struct {
 }
 
 type HeapSort struct {
-	heapNodes []*Node
-	count     int
+	HeapNodes []*Node
+	Count     int
 }
 
 func NewHeap() *HeapSort {
 	return &HeapSort{
-		heapNodes: []*Node{},
-		count:     0,
+		HeapNodes: []*Node{},
+		Count:     0,
 	}
 }
 
 func (s *HeapSort) Insert(newNode *Node) {
-	s.heapNodes = append(s.heapNodes, newNode)
-	s.count++
-	nodeCount := s.count - 1
+	s.HeapNodes = append(s.HeapNodes, newNode)
+	s.Count++
+	nodeCount := s.Count - 1
 	parent := (nodeCount - 1) / 2
 	for parent >= 0 {
-		if s.heapNodes[nodeCount].Data <= s.heapNodes[parent].Data {
+		if s.HeapNodes[nodeCount].Data <= s.HeapNodes[parent].Data {
 			return
 		}
-		s.heapNodes[nodeCount], s.heapNodes[parent] = s.heapNodes[parent], s.heapNodes[nodeCount]
+		s.HeapNodes[nodeCount], s.HeapNodes[parent] = s.HeapNodes[parent], s.HeapNodes[nodeCount]
 		nodeCount = parent
 		parent = (nodeCount - 1) / 2
 	}
@@ -36,31 +36,31 @@ func (s *HeapSort) heapify(parentIndex int) {
 	leftChild := 2*parentIndex + 1
 	rightChild := 2 * (parentIndex + 1)
 	bestIndex := parentIndex
-	if leftChild < s.count && s.heapNodes[parentIndex].Data < s.heapNodes[leftChild].Data {
+	if leftChild < s.Count && s.HeapNodes[parentIndex].Data < s.HeapNodes[leftChild].Data {
 		bestIndex = leftChild
 	}
-	if rightChild < s.count && s.heapNodes[bestIndex].Data < s.heapNodes[rightChild].Data {
+	if rightChild < s.Count && s.HeapNodes[bestIndex].Data < s.HeapNodes[rightChild].Data {
 		bestIndex = rightChild
 	}
 	if bestIndex == parentIndex {
 		return
 	}
-	s.heapNodes[parentIndex], s.heapNodes[bestIndex] = s.heapNodes[bestIndex], s.heapNodes[parentIndex]
+	s.HeapNodes[parentIndex], s.HeapNodes[bestIndex] = s.HeapNodes[bestIndex], s.HeapNodes[parentIndex]
 	s.heapify(bestIndex)
 }
 
 func (s *HeapSort) Delete() *Node {
-	if s.count == 0 {
+	if s.Count == 0 {
 		return nil
 	}
-	firstNode := s.heapNodes[0]
-	lastNode := s.heapNodes[s.count-1]
-	s.heapNodes = s.heapNodes[0 : s.count-1]
-	s.count--
-	if s.count == 0 {
+	firstNode := s.HeapNodes[0]
+	lastNode := s.HeapNodes[s.Count-1]
+	s.HeapNodes = s.HeapNodes[0 : s.Count-1]
+	s.Count--
+	if s.Count == 0 {
 		return firstNode
 	}
-	s.heapNodes[0] = lastNode
+	s.HeapNodes[0] = lastNode
 	s.heapify(0)
 	return firstNode
 }

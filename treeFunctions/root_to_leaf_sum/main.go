@@ -36,8 +36,8 @@ import "go-dsa/treeformation"
 	The root-to-leaf path 4->9->1 represents the number 491.
 	The root-to-leaf path 4->0 represents the number 40.
 	Therefore, sum = 495 + 491 + 40 = 1026.
- */
-func getSum(root *treeformation.Node,finalSum int64) int64 {
+*/
+func getSum(root *treeformation.Node, finalSum int64) int64 {
 	if root == nil {
 		return 0
 	}
@@ -45,7 +45,7 @@ func getSum(root *treeformation.Node,finalSum int64) int64 {
 	if root.Left == nil && root.Right == nil {
 		return finalSum
 	}
-	return getSum(root.Left, finalSum)+getSum(root.Right,finalSum)
+	return getSum(root.Left, finalSum) + getSum(root.Right, finalSum)
 }
 func sumNumbers(root *treeformation.Node) int64 {
 	return getSum(root, 0)

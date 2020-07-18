@@ -22,7 +22,7 @@ Output:
  / \   / \
 9   6 3   1
 
- */
+*/
 func invertTree(root *treeformation.Node) *treeformation.Node {
 	if root == nil {
 		return root
