@@ -1,109 +1,66 @@
-package main
+package heap
 
-import (
-	"fmt"
-)
-
-type node struct {
-	vertex int
-	cost   int
-	stops  int
+type Node struct {
+	Val  int
+	Data int
 }
 
-type shortestPath struct {
-	nodes          []*node
-	count          int
+type HeapSort struct {
+	heapNodes []*Node
+	count     int
 }
 
-func New() *shortestPath {
-	return &shortestPath{
-		nodes:          []*node{},
-		count:          0,
+func NewHeap() *HeapSort {
+	return &HeapSort{
+		heapNodes: []*Node{},
+		count:     0,
 	}
 }
 
-func (s *shortestPath) print() {
-	arr := [][]int{}
-	for _, node := range s.nodes {
-		arr = append(arr, []int{node.vertex, int(node.cost)})
-	}
-	fmt.Println(arr)
-}
-
-func (s *shortestPath) heapify() {
-	nodeCount := s.count
-	for parentIndex := nodeCount - 1; parentIndex >= 0; parentIndex-- {
-		for parentIndex < nodeCount {
-			leftChild := 2*parentIndex + 1
-			rightChild := 2 * (parentIndex + 1)
-			if leftChild >= nodeCount && rightChild >= nodeCount {
-				break
-			}
-			// best child mean least cost
-			var bestChild int
-			if (rightChild >= nodeCount) || (s.nodes[leftChild].cost < s.nodes[rightChild].cost) {
-				bestChild = leftChild
-			} else {
-				bestChild = rightChild
-			}
-			if s.nodes[parentIndex].cost <= s.nodes[bestChild].cost {
-				break
-			}
-			s.nodes[parentIndex], s.nodes[bestChild] = s.nodes[bestChild], s.nodes[parentIndex]
-			parentIndex = bestChild
-		}
-	}
-}
-
-// Min Heap
-func (s *shortestPath) insert(newNode *node) {
-
-	s.nodes = append(s.nodes, newNode)
+func (s *HeapSort) Insert(newNode *Node) {
+	s.heapNodes = append(s.heapNodes, newNode)
 	s.count++
-	nodeCount := s.count
-	parentIndex := ((nodeCount + 1) / 2) - 1
-	if parentIndex < 0 {
+	nodeCount := s.count - 1
+	parent := (nodeCount - 1) / 2
+	for parent >= 0 {
+		if s.heapNodes[nodeCount].Data <= s.heapNodes[parent].Data {
+			return
+		}
+		s.heapNodes[nodeCount], s.heapNodes[parent] = s.heapNodes[parent], s.heapNodes[nodeCount]
+		nodeCount = parent
+		parent = (nodeCount - 1) / 2
+	}
+}
+
+func (s *HeapSort) heapify(parentIndex int) {
+	leftChild := 2*parentIndex + 1
+	rightChild := 2 * (parentIndex + 1)
+	bestIndex := parentIndex
+	if leftChild < s.count && s.heapNodes[parentIndex].Data < s.heapNodes[leftChild].Data {
+		bestIndex = leftChild
+	}
+	if rightChild < s.count && s.heapNodes[bestIndex].Data < s.heapNodes[rightChild].Data {
+		bestIndex = rightChild
+	}
+	if bestIndex == parentIndex {
 		return
 	}
-	for parentIndex >= 0 && s.nodes[nodeCount-1].cost < s.nodes[parentIndex].cost {
-		s.nodes[nodeCount-1], s.nodes[parentIndex] = s.nodes[parentIndex], s.nodes[nodeCount-1]
-		nodeCount = parentIndex + 1
-		parentIndex = (nodeCount / 2) - 1
-	}
-
+	s.heapNodes[parentIndex], s.heapNodes[bestIndex] = s.heapNodes[bestIndex], s.heapNodes[parentIndex]
+	s.heapify(bestIndex)
 }
 
-func (s *shortestPath) delete() *node {
-	nodeCount := s.count
-	lastNode := s.nodes[nodeCount-1]
-	firstNode := s.nodes[0]
-	s.nodes = s.nodes[0 : nodeCount-1]
+func (s *HeapSort) Delete() *Node {
+	if s.count == 0 {
+		return nil
+	}
+	firstNode := s.heapNodes[0]
+	lastNode := s.heapNodes[s.count-1]
+	s.heapNodes = s.heapNodes[0 : s.count-1]
 	s.count--
 	if s.count == 0 {
 		return firstNode
 	}
-	s.nodes[0] = lastNode
-	nodeCount--
-	parentIndex := 0
-	for parentIndex < nodeCount {
-		leftChild := 2*parentIndex + 1
-		rightChild := 2 * (parentIndex + 1)
-		if leftChild >= nodeCount && rightChild >= nodeCount {
-			return firstNode
-		}
-		// best child mean least cost
-		var bestChild int
-		if (rightChild >= nodeCount) || (s.nodes[leftChild].cost < s.nodes[rightChild].cost) {
-			bestChild = leftChild
-		} else {
-			bestChild = rightChild
-		}
-		if s.nodes[parentIndex].cost > s.nodes[bestChild].cost {
-			s.nodes[parentIndex], s.nodes[bestChild] = s.nodes[bestChild], s.nodes[parentIndex]
-		}
-		parentIndex = bestChild
-	}
+	s.heapNodes[0] = lastNode
+	s.heapify(0)
 	return firstNode
 }
-
-
