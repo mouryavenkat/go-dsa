@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package helpers
 
 func StringPermutations(inputStr string) (permutations []string) {
 	for i := 0; i < len(inputStr); i++ {
@@ -17,6 +15,3 @@ func StringPermutations(inputStr string) (permutations []string) {
 	return
 }
 
-func main() {
-	fmt.Println(len(StringPermutations("ABCDE")))
-}
