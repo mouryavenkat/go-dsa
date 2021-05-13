@@ -1,5 +1,18 @@
 package palindromic_substrings
 
+/*
+	
+	Given a string s, return the number of palindromic substrings in it.
+
+	Input: s = "abc"
+	Explanation: Three palindromic strings: "a", "b", "c".
+
+	Input: s = "aaa"
+	Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+
+	Approach -> If any string is supposed to be a palindrome, then the string[start+1:end] should also be a palindrome
+ */
+
 func countSubstrings(s string) int {
 	sSplit := strings.Split(s, "")
 	prevData := make([][]bool, len(sSplit))
