@@ -3,15 +3,15 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"go-dsa/heap"
+	heap2 "go-dsa/collections/heap"
 	"os"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	leftHeapObject := heap.NewHeap()
-	rightHeapObject := heap.NewHeap()
+	leftHeapObject := heap2.NewHeap()
+	rightHeapObject := heap2.NewHeap()
 	var leftNodes, rightNodes int
 	reader := bufio.NewReader(os.Stdin)
 	for {
@@ -25,48 +25,42 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		if leftNodes == 0 || leftHeapObject.HeapNodes[0].Data >= int(intInput) {
-			leftHeapObject.Insert(&heap.Node{
-				Val:  int(intInput),
-				Data: int(intInput),
-			}, func(a int, b int) bool {
+		if leftNodes == 0 || leftHeapObject.GetDataAtIndex(0) >= int(intInput) {
+			leftHeapObject.Insert(int(intInput), int(intInput), func(a int, b int) bool {
 				return a <= b
 			})
 			leftNodes++
 		} else {
-			rightHeapObject.Insert(&heap.Node{
-				Val:  int(intInput),
-				Data: int(intInput),
-			}, func(a int, b int) bool {
+			rightHeapObject.Insert(int(intInput), int(intInput), func(a int, b int) bool {
 				return a >= b
 			})
 			rightNodes++
 		}
 		if leftNodes-rightNodes > 1 {
-			deletedNode := leftHeapObject.Delete(func(a int, b int) bool {
+			val, data, _ := leftHeapObject.Delete(func(a int, b int) bool {
 				return a < b
 			})
 			leftNodes--
-			rightHeapObject.Insert(deletedNode, func(a int, b int) bool {
+			rightHeapObject.Insert(val, data, func(a int, b int) bool {
 				return a >= b
 			})
 			rightNodes++
 		} else if rightNodes-leftNodes > 1 {
-			deletedNode := rightHeapObject.Delete(func(a int, b int) bool {
+			val, data, _ := rightHeapObject.Delete(func(a int, b int) bool {
 				return a > b
 			})
 			rightNodes--
-			leftHeapObject.Insert(deletedNode, func(a int, b int) bool {
+			leftHeapObject.Insert(val, data, func(a int, b int) bool {
 				return a <= b
 			})
 			leftNodes++
 		}
 		if leftNodes == rightNodes {
-			fmt.Println("Median", (leftHeapObject.HeapNodes[0].Data+rightHeapObject.HeapNodes[0].Data)/2)
+			fmt.Println("Median", (leftHeapObject.GetDataAtIndex(0)+rightHeapObject.GetDataAtIndex(0))/2)
 		} else if leftNodes > rightNodes {
-			fmt.Println("Median", leftHeapObject.HeapNodes[0].Data)
+			fmt.Println("Median", leftHeapObject.GetDataAtIndex(0))
 		} else {
-			fmt.Println("Median", rightHeapObject.HeapNodes[0].Data)
+			fmt.Println("Median", rightHeapObject.GetDataAtIndex(0))
 		}
 
 	}

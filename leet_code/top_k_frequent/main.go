@@ -1,15 +1,17 @@
 package main
 
-import "go-dsa/heap"
+import (
+	heap2 "go-dsa/collections/heap"
+)
 
 func topKFrequent(nums []int, k int) []int {
-	h := heap.NewHeap()
+	h := heap2.NewHeap()
 	numsMap := map[int]int{}
 	for _, num := range nums {
 		numsMap[num]++
 	}
 	for key, value := range numsMap {
-		h.Insert(&heap.Node{
+		h.Insert(&heap2.Node{
 			Val:  key,
 			Data: value,
 		})
