@@ -14,4 +14,3 @@ func StringPermutations(inputStr string) (permutations []string) {
 	}
 	return
 }
-

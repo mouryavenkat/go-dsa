@@ -11,7 +11,7 @@ import "strings"
 
 	It is guaranteed that the answer is unique.
 
- */
+*/
 func removeDuplicates(s string, k int) string {
 	sSplit := strings.Split(s, "")
 	charMap := map[string]bool{}

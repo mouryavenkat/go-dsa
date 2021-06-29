@@ -37,7 +37,7 @@ func next(arr []int, target int) int {
 
 	Input: s = "dsahjpjauf", words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]
 	Output: 2
- */
+*/
 
 func numMatchingSubsequences(s string, words []string) int {
 	actualSMap := map[string][]int{}

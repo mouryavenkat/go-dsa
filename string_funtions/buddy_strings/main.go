@@ -26,7 +26,7 @@ func buddyStrings(A string, B string) bool {
 	aSplit := strings.Split(A, "")
 	bSplit := strings.Split(B, "")
 	aDiff := make([]string, 2, 2)
-	bDiff := make([]string, 2 ,2)
+	bDiff := make([]string, 2, 2)
 	mismatchCount := 0
 	for i := 0; i < len(aSplit); i++ {
 		aMap[aSplit[i]]++

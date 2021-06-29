@@ -15,7 +15,7 @@ import "sort"
 
 	Input: nums = [1,10,2,9]
 	Output: 16
- */
+*/
 func minMoves2(nums []int) int {
 	sort.Ints(nums)
 	var moves int

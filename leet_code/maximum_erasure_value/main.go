@@ -17,7 +17,7 @@ package main
 	Input: nums = [5,2,1,2,5,2,1,2,5]
 	Output: 8
 	Explanation: The optimal subarray here is [5,2,1] or [1,2,5].
- */
+*/
 
 func maximumUniqueSubarray(nums []int) int {
 	cumSum := make([]int, len(nums))

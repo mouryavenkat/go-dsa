@@ -22,8 +22,7 @@ import "strings"
 
 	Input: s = "01101110", minJump = 2, maxJump = 3
 	Output: false
- */
-
+*/
 
 func canReach(s string, minJump int, maxJump int) bool {
 	sSplit := strings.Split(s, "")
@@ -63,6 +62,3 @@ func canReach(s string, minJump int, maxJump int) bool {
 	}
 	return false
 }
-
-
-

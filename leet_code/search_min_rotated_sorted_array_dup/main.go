@@ -33,7 +33,7 @@ func findMin(nums []int) int {
 			/*
 				In case there is a tie deciding which direction to move, we don't have any other choice
 				than iterating through the entire slice. (Worst case will be O(n)
-			 */
+			*/
 			rightMin := linearSearch(nums, mid+1, endIndex+1, nums[mid])
 			leftMin := linearSearch(nums, startIndex, mid, nums[mid])
 			if rightMin > leftMin {

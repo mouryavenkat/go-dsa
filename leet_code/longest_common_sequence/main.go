@@ -14,7 +14,7 @@ package main
 
 	Input: nums = [0,3,7,2,5,8,4,6,0,1]
 	Output: 9
- */
+*/
 func longestConsecutive(nums []int) int {
 	numsMap := make(map[int]bool)
 	for _, num := range nums {
@@ -53,5 +53,5 @@ func longestConsecutive(nums []int) int {
 }
 
 func main() {
-	longestConsecutive([]int{0,3,7,2,5,8,4,6,0,1})
+	longestConsecutive([]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1})
 }

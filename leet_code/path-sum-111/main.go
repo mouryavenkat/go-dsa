@@ -28,7 +28,7 @@ import "go-dsa/treeformation"
 	1.  5 -> 3
 	2.  5 -> 2 -> 1
 	3. -3 -> 11
- */
+*/
 
 func calculatePathCount(root *treeformation.Node, sum int64, pathSlice []int64) int {
 	if root == nil {

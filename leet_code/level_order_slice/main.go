@@ -5,7 +5,7 @@ import "go-dsa/treeformation"
 /*
 	Input: root = [3,9,20,null,null,15,7]
 	Output: [[3],[9,20],[15,7]]
- */
+*/
 func getOrderedElements(root *treeformation.Node, finalSlice [][]int64, index int) [][]int64 {
 	if root == nil {
 		return finalSlice
