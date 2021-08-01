@@ -27,7 +27,7 @@ func largestValues(root *treeformation.Node) []int {
 	for cNodesCount > 0 {
 		nextLevelNodes := make([]*treeformation.Node, 0)
 		var nextLevelNodesCount int
-		bestInLevel := cNodes[0].Val
+		bestInLevel := cNodes[0].Data
 		for i := 0; i < cNodesCount; i++ {
 			if cNodes[i].Left != nil {
 				nextLevelNodes = append(nextLevelNodes, cNodes[i].Left)
@@ -44,7 +44,7 @@ func largestValues(root *treeformation.Node) []int {
 		}
 		cNodes = nextLevelNodes
 		cNodesCount = nextLevelNodesCount
-		bestArr = append(bestArr, bestInLevel)
+		bestArr = append(bestArr, int(bestInLevel))
 	}
 	return bestArr
 }
